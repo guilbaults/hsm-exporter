@@ -7,7 +7,7 @@ from prometheus_client.core import REGISTRY, GaugeMetricFamily
 from prometheus_client import start_http_server
 
 mdt_path = '/proc/fs/lustre/mdt/'
-#mdt_path = 'test/fs/lustre/mdt/'
+# mdt_path = 'test/fs/lustre/mdt/'
 
 
 class HSMCollector(object):
@@ -38,7 +38,7 @@ class HSMCollector(object):
             with open(mdt_path + mdt + '/hsm/agents', 'r') as agents_f:
                 for agent in agents_f.readlines():
                     m = re.search(r'uuid=(.*) archive_id=(\d+) requests=\[current:(.*) ok:(.*) errors:(.*)\]',  # noqa: E501
-                        agent)
+                                  agent)
                     gauge_agents.add_metric(
                         [m.group(1), m.group(2), mdt, 'current'], m.group(3))
                     gauge_agents.add_metric(
@@ -47,6 +47,7 @@ class HSMCollector(object):
                         [m.group(1), m.group(2), mdt, 'errors'], m.group(5))
         yield gauge_actions
         yield gauge_agents
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

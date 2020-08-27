@@ -27,7 +27,7 @@ mkdir -p %{buildroot}/%{_unitdir}
 
 sed -i -e '1i#!/usr/bin/python' hsm-exporter.py
 install -m 0755 %{name}.py %{buildroot}/%{_bindir}/%{name}
-install -m 0644 infiniband-exporter.service %{buildroot}/%{_unitdir}/hsm-exporter.service
+install -m 0644 hsm-exporter.service %{buildroot}/%{_unitdir}/hsm-exporter.service
 
 %clean
 rm -rf $RPM_BUILD_ROOT
