@@ -1,0 +1,13 @@
+[Unit]
+Description=HSM-exporter
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/hsm-exporter.conf
+ExecStart=/usr/bin/hsm-exporter
+PIDFile=/var/run/hsm-exporter.pid
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
